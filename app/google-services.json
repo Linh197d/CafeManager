@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "877493701676",
+    "firebase_url": "https://quanlycafe-6ea45-default-rtdb.firebaseio.com",
+    "project_id": "quanlycafe-6ea45",
+    "storage_bucket": "quanlycafe-6ea45.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877493701676:android:988d480f9f9d44408d1589",
+        "android_client_info": {
+          "package_name": "com.app.shopfee"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKTfGOjl7TyYZKFZlw5XTbdT32Y2H6-LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877493701676:android:c8e127878f58c8708d1589",
+        "android_client_info": {
+          "package_name": "com.example.quancafe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKTfGOjl7TyYZKFZlw5XTbdT32Y2H6-LA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
