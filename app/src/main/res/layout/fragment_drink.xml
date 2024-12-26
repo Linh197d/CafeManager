@@ -12,13 +12,13 @@
         android:layout_marginTop="@dimen/define_dimen_10"
         android:layout_marginBottom="@dimen/define_dimen_10"
         android:focusable="false"
-        android:nestedScrollingEnabled="false"/>
+        android:nestedScrollingEnabled="false" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_drink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:focusable="false"
-        android:nestedScrollingEnabled="false"/>
+        android:nestedScrollingEnabled="false" />
 
 </LinearLayout>

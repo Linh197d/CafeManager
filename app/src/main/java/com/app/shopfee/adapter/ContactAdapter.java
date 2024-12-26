@@ -20,13 +20,9 @@ import java.util.List;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
 
-    private WeakReference<Context> contextRef;
     private final List<Contact> listContact;
     private final ICallPhone iCallPhone;
-
-    public interface ICallPhone {
-        void onClickCallPhone();
-    }
+    private WeakReference<Context> contextRef;
 
     public ContactAdapter(Context context, List<Contact> listContact, ICallPhone iCallPhone) {
         this.contextRef = new WeakReference<>(context);
@@ -94,6 +90,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     public void release() {
         contextRef.clear();
+    }
+
+    public interface ICallPhone {
+        void onClickCallPhone();
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {

@@ -26,7 +26,8 @@ public class Order implements Serializable {
     private String review;
     private Address address;
 
-    public Order() {}
+    public Order() {
+    }
 
     public long getId() {
         return id;

@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity {
                 mViewPager2.setCurrentItem(1);
             } else if (id == R.id.nav_history) {
                 mViewPager2.setCurrentItem(2);
-            }else if (id == R.id.nav_account) {
+            } else if (id == R.id.nav_account) {
                 mViewPager2.setCurrentItem(3);
             }
             return true;

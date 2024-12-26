@@ -19,12 +19,6 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
     private final List<Address> listAddress;
     private final IClickAddressListener iClickAddressListener;
 
-    public interface IClickAddressListener {
-        void onClickAddressItem(Address address);
-        void onClickDeleteAddressItem(Address address);
-        void onClickEditAddressItem(Address address);
-    }
-
     public AddressAdapter(List<Address> list, IClickAddressListener listener) {
         this.listAddress = list;
         this.iClickAddressListener = listener;
@@ -82,9 +76,17 @@ public class AddressAdapter extends RecyclerView.Adapter<AddressAdapter.AddressV
         return 0;
     }
 
+    public interface IClickAddressListener {
+        void onClickAddressItem(Address address);
+
+        void onClickDeleteAddressItem(Address address);
+
+        void onClickEditAddressItem(Address address);
+    }
+
     public static class AddressViewHolder extends RecyclerView.ViewHolder {
 
-        private final ImageView imgStatus, imgDelete,imgEdite;
+        private final ImageView imgStatus, imgDelete, imgEdite;
         private final TextView tvName;
         private final TextView tvPhone;
         private final TextView tvAddress;

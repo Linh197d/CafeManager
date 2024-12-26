@@ -2,6 +2,8 @@ package com.app.shopfee.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricPrompt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,8 +48,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
-import vn.zalopay.sdk.Environment;
 import vn.zalopay.sdk.ZaloPayError;
 import vn.zalopay.sdk.ZaloPaySDK;
 import vn.zalopay.sdk.listeners.PayOrderListener;
@@ -203,6 +206,7 @@ public class CartActivity extends BaseActivity {
                             Toast.makeText(CartActivity.this, "Không tìm thấy đồ uống", Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Toast.makeText(CartActivity.this, "Lỗi khi truy vấn dữ liệu từ Firebase", Toast.LENGTH_SHORT).show();
@@ -216,6 +220,7 @@ public class CartActivity extends BaseActivity {
         calculateTotalPrice();
         displayCountItemCart();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -326,10 +331,44 @@ public class CartActivity extends BaseActivity {
         }
 
         if (paymentMethodSelected.getId() == 4) {
-            handleZaloPayPayment();
+            authenticateBiometric(() -> {
+
+                handleZaloPayPayment();
+            });
         } else {
             createAndSendOrder();
         }
+    }
+
+    private void authenticateBiometric(Runnable onSuccess) {
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Xác thực để đổi mật khẩu")
+                .setSubtitle("Sử dụng vân tay hoặc khuôn mặt để xác thực danh tính của bạn")
+                .setNegativeButtonText("Hủy")
+                .build();
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, Executors.newSingleThreadExecutor(),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        onSuccess.run(); // Thực hiện logic đổi mật khẩu nếu xác thực thành công
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        showToastMessage("Xác thực thất bại: " + errString);
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        showToastMessage("Không thể xác thực danh tính của bạn.");
+                    }
+                });
+
+        biometricPrompt.authenticate(promptInfo);
     }
 
     private void handleZaloPayPayment() {
@@ -356,6 +395,7 @@ public class CartActivity extends BaseActivity {
 
                         });
                     }
+
                     @Override
                     public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
                         runOnUiThread(() -> {
@@ -366,9 +406,13 @@ public class CartActivity extends BaseActivity {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Toast.makeText(this, "Lỗi tạo đơn hàng ZaloPay", Toast.LENGTH_SHORT).show();
+            Handler handler = new Handler(Looper.getMainLooper());
+            handler.post(() -> {
+                Toast.makeText(this, "Lỗi tạo đơn hàng ZaloPay", Toast.LENGTH_SHORT).show();
+            });
         }
     }
+
     private void createAndSendOrder() {
         Order orderBooking = new Order();
         orderBooking.setId(System.currentTimeMillis());
@@ -394,6 +438,7 @@ public class CartActivity extends BaseActivity {
         bundle.putSerializable(Constant.ORDER_OBJECT, orderBooking);
         GlobalFunction.startActivity(CartActivity.this, PaymentActivity.class, bundle);
     }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);

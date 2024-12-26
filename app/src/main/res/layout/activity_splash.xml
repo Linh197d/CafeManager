@@ -7,8 +7,8 @@
     tools:ignore="ContentDescription">
 
     <ImageView
-        android:padding="@dimen/define_dimen_20"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/define_dimen_20"
         android:src="@drawable/ic_logo" />
 </LinearLayout>

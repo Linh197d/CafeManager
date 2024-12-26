@@ -18,7 +18,7 @@ import okhttp3.Response;
 import okhttp3.TlsVersion;
 
 public class HttpProvider {
-     public static JSONObject sendPost(String URL, RequestBody formBody) {
+    public static JSONObject sendPost(String URL, RequestBody formBody) {
         JSONObject data = new JSONObject();
         try {
             ConnectionSpec spec = new ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS)
@@ -49,7 +49,7 @@ public class HttpProvider {
                 data = new JSONObject(response.body().string());
             }
 
-        }  catch (IOException | JSONException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
 

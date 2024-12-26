@@ -35,7 +35,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -61,6 +60,7 @@ public class HomeFragment extends Fragment {
     private TextView edtsearch;
 
     private View mView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -118,14 +118,15 @@ public class HomeFragment extends Fragment {
         list.add(new Banner(R.drawable.banner2));
         return list;
     }
-    private void autoBannerImages(){
+
+    private void autoBannerImages() {
         if (mlistBanner == null || mlistBanner.isEmpty() || mTimer != null) {
             return;
         }
         if (mTimer == null) {
             mTimer = new Timer();
         }
-        mTimer.schedule(new TimerTask(){
+        mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -134,7 +135,7 @@ public class HomeFragment extends Fragment {
                         int currentItem = viewPager.getCurrentItem();
                         int totalItem = mlistBanner.size() - 1;
                         if (currentItem < totalItem) {
-                            currentItem ++;
+                            currentItem++;
                             viewPager.setCurrentItem(currentItem);
                         } else {
                             viewPager.setCurrentItem(0);
@@ -144,6 +145,7 @@ public class HomeFragment extends Fragment {
             }
         }, 500, 3000);
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -202,6 +204,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
     private void displayListFeatured() {
         FeaturedAdapter adapter = new FeaturedAdapter(listFatured, new IClickDrinkListener() {
             @Override
@@ -213,14 +216,15 @@ public class HomeFragment extends Fragment {
         });
         recyclerFatured.setAdapter(adapter);
     }
-private void displaySearch(){
-    edtsearch.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Bundle bundle = new Bundle();
-            GlobalFunction.startActivity(getActivity(), ListdrinkActivity.class, bundle);
-        }
-    });
-}
+
+    private void displaySearch() {
+        edtsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                GlobalFunction.startActivity(getActivity(), ListdrinkActivity.class, bundle);
+            }
+        });
+    }
 
 }

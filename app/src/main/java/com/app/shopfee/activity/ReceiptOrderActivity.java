@@ -119,7 +119,7 @@ public class ReceiptOrderActivity extends BaseActivity {
         tvAddress.setText(mOrder.getAddress().getAddress());
         DrinkOrderAdapter adapter = new DrinkOrderAdapter(mOrder.getDrinks());
         rcvDrinks.setAdapter(adapter);
-        if (Order.STATUS_COMPLETE == mOrder.getStatus()|| mOrder.getStatus() == Order.STATUS_CANCELLED) {
+        if (Order.STATUS_COMPLETE == mOrder.getStatus() || mOrder.getStatus() == Order.STATUS_CANCELLED) {
             tvTrackingOrder.setVisibility(View.GONE);
         } else {
             tvTrackingOrder.setVisibility(View.VISIBLE);

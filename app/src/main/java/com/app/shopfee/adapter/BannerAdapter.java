@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.app.shopfee.R;
-import com.app.shopfee.fragment.HomeFragment;
 import com.app.shopfee.model.Banner;
 import com.bumptech.glide.Glide;
 

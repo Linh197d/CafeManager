@@ -19,13 +19,9 @@ import java.util.List;
 
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterViewHolder> {
 
-    private Context context;
     private final List<Filter> listFilter;
     private final IClickFilterListener iClickFilterListener;
-
-    public interface IClickFilterListener {
-        void onClickFilterItem(Filter filter);
-    }
+    private Context context;
 
     public FilterAdapter(Context context, List<Filter> list, IClickFilterListener listener) {
         this.context = context;
@@ -91,6 +87,10 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterView
 
     public void release() {
         if (context != null) context = null;
+    }
+
+    public interface IClickFilterListener {
+        void onClickFilterItem(Filter filter);
     }
 
     public static class FilterViewHolder extends RecyclerView.ViewHolder {

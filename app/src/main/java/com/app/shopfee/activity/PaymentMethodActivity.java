@@ -90,7 +90,8 @@ public class PaymentMethodActivity extends BaseActivity {
                                 }
                             }
                         }
-                        if (paymentMethodAdapter != null) paymentMethodAdapter.notifyDataSetChanged();
+                        if (paymentMethodAdapter != null)
+                            paymentMethodAdapter.notifyDataSetChanged();
                     }
 
                     @Override

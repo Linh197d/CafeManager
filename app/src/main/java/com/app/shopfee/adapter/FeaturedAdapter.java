@@ -13,14 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.app.shopfee.R;
 import com.app.shopfee.listener.IClickDrinkListener;
-import com.app.shopfee.model.Category;
 import com.app.shopfee.model.Drink;
 import com.app.shopfee.utils.Constant;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.DrinkViewHolder>{
+public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.DrinkViewHolder> {
     private final IClickDrinkListener iClickDrinkListener;
     private List<Drink> drinks;
 
@@ -28,6 +28,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.DrinkV
         this.drinks = list;
         this.iClickDrinkListener = listener;
     }
+
     public void setData(List<Drink> drinks) {
         if (drinks != null) {
             this.drinks = drinks;
@@ -79,6 +80,7 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.DrinkV
             }
         }
     }
+
     @Override
     public int getItemCount() {
         return drinks.size();

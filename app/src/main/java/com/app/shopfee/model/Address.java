@@ -23,7 +23,6 @@ public class Address implements Serializable {
     }
 
 
-
     public String getUserEmail() {
         return userEmail;
     }

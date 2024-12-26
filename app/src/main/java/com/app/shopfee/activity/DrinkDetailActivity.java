@@ -19,7 +19,6 @@ import com.app.shopfee.R;
 import com.app.shopfee.adapter.ToppingAdapter;
 import com.app.shopfee.database.DrinkDatabase;
 import com.app.shopfee.event.DisplayCartEvent;
-import com.app.shopfee.fragment.HomeFragment;
 import com.app.shopfee.model.Drink;
 import com.app.shopfee.model.RatingReview;
 import com.app.shopfee.model.Topping;
@@ -94,6 +93,7 @@ public class DrinkDetailActivity extends BaseActivity {
             mDrinkOld = (Drink) bundle.get(Constant.DRINK_OBJECT);
         }
     }
+
     private void initUi() {
         imgDrink = findViewById(R.id.img_drink);
         tvName = findViewById(R.id.tv_name);
@@ -274,7 +274,7 @@ public class DrinkDetailActivity extends BaseActivity {
             Random random = new Random();
             int randomNumber = random.nextInt(1000000000);
             mDrink.setId(randomNumber);
-                DrinkDatabase.getInstance(DrinkDetailActivity.this).drinkDAO().insertDrink(mDrink);
+            DrinkDatabase.getInstance(DrinkDetailActivity.this).drinkDAO().insertDrink(mDrink);
             GlobalFunction.startActivity(DrinkDetailActivity.this, CartActivity.class);
             if (mDrinkOld != null) {
                 DrinkDatabase.getInstance(DrinkDetailActivity.this).drinkDAO().deleteDrink(mDrinkOld);

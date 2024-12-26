@@ -22,15 +22,9 @@ import java.util.List;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHolder> {
 
-    private Context context;
     private final List<Order> listOrder;
     private final IClickOrderListener iClickOrderListener;
-
-    public interface IClickOrderListener {
-        void onClickTrackingOrder(long orderId);
-        void onClickReceiptOrder(Order order);
-        void onClickRatingReview(Order order);
-    }
+    private Context context;
 
     public OrderAdapter(Context context, List<Order> list, IClickOrderListener listener) {
         this.context = context;
@@ -111,6 +105,14 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
     public void release() {
         context = null;
+    }
+
+    public interface IClickOrderListener {
+        void onClickTrackingOrder(long orderId);
+
+        void onClickReceiptOrder(Order order);
+
+        void onClickRatingReview(Order order);
     }
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {

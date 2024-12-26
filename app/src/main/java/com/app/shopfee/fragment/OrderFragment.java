@@ -1,12 +1,10 @@
 package com.app.shopfee.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +21,6 @@ import com.app.shopfee.adapter.OrderAdapter;
 import com.app.shopfee.model.Order;
 import com.app.shopfee.model.RatingReview;
 import com.app.shopfee.model.TabOrder;
-import com.app.shopfee.prefs.DataStoreManager;
 import com.app.shopfee.utils.Constant;
 import com.app.shopfee.utils.GlobalFunction;
 import com.google.firebase.auth.FirebaseAuth;
@@ -116,31 +113,31 @@ public class OrderFragment extends Fragment {
         DatabaseReference ordersRef = MyApplication.get(getActivity()).getOrderDatabaseReference();
         Query query = ordersRef.orderByChild("userEmail").equalTo(userEmail);
         query.addValueEventListener(new ValueEventListener() {
-                    @SuppressLint("NotifyDataSetChanged")
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        listOrder.clear();
-                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                            Order order = dataSnapshot.getValue(Order.class);
-                            if (order != null) {
-                                if (TabOrder.TAB_ORDER_PROCESS == orderTabType) {
-                                    if (Order.STATUS_COMPLETE != order.getStatus() && Order.STATUS_CANCELLED != order.getStatus()) {
-                                        listOrder.add(0, order);
-                                    }
-                                } else if (TabOrder.TAB_ORDER_DONE == orderTabType) {
-                                    if (Order.STATUS_COMPLETE == order.getStatus()|| Order.STATUS_CANCELLED == order.getStatus()) {
-                                        listOrder.add(0, order);
-                                    }
-                                }
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listOrder.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Order order = dataSnapshot.getValue(Order.class);
+                    if (order != null) {
+                        if (TabOrder.TAB_ORDER_PROCESS == orderTabType) {
+                            if (Order.STATUS_COMPLETE != order.getStatus() && Order.STATUS_CANCELLED != order.getStatus()) {
+                                listOrder.add(0, order);
+                            }
+                        } else if (TabOrder.TAB_ORDER_DONE == orderTabType) {
+                            if (Order.STATUS_COMPLETE == order.getStatus() || Order.STATUS_CANCELLED == order.getStatus()) {
+                                listOrder.add(0, order);
                             }
                         }
-                        orderAdapter.notifyDataSetChanged();
                     }
+                }
+                orderAdapter.notifyDataSetChanged();
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     @Override

@@ -71,9 +71,11 @@ public class ListdrinkActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
+
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
+
             @Override
             public void afterTextChanged(Editable editable) {
                 String query = editable.toString().trim();
@@ -126,6 +128,7 @@ public class ListdrinkActivity extends AppCompatActivity {
                             drinkAdapter.notifyDataSetChanged();
                         }
                     }
+
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }

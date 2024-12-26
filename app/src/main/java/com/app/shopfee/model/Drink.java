@@ -36,7 +36,8 @@ public class Drink implements Serializable {
     private String toppingIds;
     private String note;
 
-    public Drink() {}
+    public Drink() {
+    }
 
     public int getId() {
         return id;

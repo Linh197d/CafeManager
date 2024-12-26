@@ -15,7 +15,8 @@ public class Topping {
     private int price;
     private boolean isSelected;
 
-    public Topping() {}
+    public Topping() {
+    }
 
     public int getId() {
         return id;

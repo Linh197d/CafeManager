@@ -14,8 +14,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/layout_bottom">
+        android:layout_above="@+id/layout_bottom"
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,50 +96,50 @@
                         android:id="@+id/layout_count"
                         android:layout_width="@dimen/define_dimen_80"
                         android:layout_height="@dimen/define_dimen_24"
-                        android:orientation="horizontal"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
-                        android:background="@drawable/bg_white_corner_3_border_gray">
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/bg_white_corner_3_border_gray"
+                        android:orientation="horizontal">
 
                         <TextView
                             android:id="@+id/tv_sub"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="-"
                             android:gravity="center"
+                            android:text="-"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="@dimen/text_size_normal"/>
+                            android:textSize="@dimen/text_size_normal" />
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorAccent"/>
+                            android:background="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/tv_count"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="1"
                             android:gravity="center"
+                            android:text="1"
                             android:textColor="@color/textColorHeading"
-                            android:textSize="@dimen/text_size_small"/>
+                            android:textSize="@dimen/text_size_small" />
 
                         <View
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorAccent"/>
+                            android:background="@color/colorAccent" />
 
                         <TextView
                             android:id="@+id/tv_add"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:text="+"
                             android:gravity="center"
+                            android:text="+"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="@dimen/text_size_normal"/>
+                            android:textSize="@dimen/text_size_normal" />
                     </LinearLayout>
                 </RelativeLayout>
 
@@ -196,9 +196,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
-                        android:layout_toEndOf="@+id/view_point"
                         android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_toStartOf="@+id/img_next"
+                        android:layout_toEndOf="@+id/view_point"
                         android:text="@string/ratings_and_reviews"
                         android:textColor="@color/textColorHeading"
                         android:textSize="@dimen/text_size_xsmall" />
@@ -207,9 +207,9 @@
                         android:id="@+id/img_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_next_right"
+                        android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"/>
+                        android:src="@drawable/ic_next_right" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -241,56 +241,56 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_small"
-                        android:textColor="@color/textColorHeading"
-                        android:layout_toStartOf="@+id/tv_size_regular"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
-                        android:text="@string/label_size"/>
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_size_regular"
+                        android:text="@string/label_size"
+                        android:textColor="@color/textColorHeading"
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/tv_size_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_regular"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_toStartOf="@+id/tv_size_medium"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_size_medium"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_regular"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tv_size_medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_medium"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_toStartOf="@+id/tv_size_large"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
-                        android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_size_large"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:maxLines="2"
+                        android:paddingStart="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:paddingEnd="@dimen/define_dimen_14"
+                        android:text="@string/label_medium"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tv_size_large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_large"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_large"
+                        android:textColor="@color/colorPrimaryDark" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -301,41 +301,41 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_small"
-                        android:textColor="@color/textColorHeading"
-                        android:layout_toStartOf="@+id/tv_sugar_normal"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
-                        android:text="@string/label_sugar"/>
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_sugar_normal"
+                        android:text="@string/label_sugar"
+                        android:textColor="@color/textColorHeading"
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/tv_sugar_normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_normal"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_toStartOf="@+id/tv_sugar_less"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_sugar_less"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_normal"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tv_sugar_less"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_less"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_less"
+                        android:textColor="@color/colorPrimaryDark" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -346,41 +346,41 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/text_size_small"
-                        android:textColor="@color/textColorHeading"
-                        android:layout_toStartOf="@+id/tv_ice_normal"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
-                        android:text="@string/label_ice"/>
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_ice_normal"
+                        android:text="@string/label_ice"
+                        android:textColor="@color/textColorHeading"
+                        android:textSize="@dimen/text_size_small" />
 
                     <TextView
                         android:id="@+id/tv_ice_normal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_normal"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:layout_toStartOf="@+id/tv_ice_less"
-                        android:layout_marginEnd="@dimen/define_dimen_10"
                         android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_ice_less"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_normal"
+                        android:textColor="@color/colorPrimaryDark" />
 
                     <TextView
                         android:id="@+id/tv_ice_less"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_less"
-                        android:textColor="@color/colorPrimaryDark"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:background="@drawable/bg_white_corner_6_border_main"
                         android:paddingStart="@dimen/define_dimen_14"
-                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingTop="@dimen/define_dimen_2"
+                        android:paddingEnd="@dimen/define_dimen_14"
                         android:paddingBottom="@dimen/define_dimen_2"
-                        android:background="@drawable/bg_white_corner_6_border_main"/>
+                        android:text="@string/label_less"
+                        android:textColor="@color/colorPrimaryDark" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -390,11 +390,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_white_corner_6_border_gray"
                 android:layout_marginStart="@dimen/define_dimen_10"
                 android:layout_marginEnd="@dimen/define_dimen_10"
-                android:padding="@dimen/define_dimen_10"
-                android:orientation="vertical">
+                android:background="@drawable/bg_white_corner_6_border_gray"
+                android:orientation="vertical"
+                android:padding="@dimen/define_dimen_10">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -410,16 +410,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/define_dimen_6"
                     android:focusable="false"
-                    android:nestedScrollingEnabled="false"/>
+                    android:nestedScrollingEnabled="false" />
             </LinearLayout>
             <!--End layout topping-->
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/label_notes"
-                android:layout_marginTop="@dimen/define_dimen_10"
                 android:layout_marginStart="@dimen/define_dimen_10"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:text="@string/label_notes"
                 android:textColor="@color/textColorHeading"
                 android:textSize="@dimen/text_size_xnormal"
                 android:textStyle="bold" />
@@ -428,16 +428,16 @@
                 android:id="@+id/edt_notes"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/define_dimen_80"
+                android:layout_margin="@dimen/define_dimen_10"
                 android:background="@drawable/bg_white_corner_6_border_gray"
                 android:gravity="start"
-                android:imeOptions="actionDone"
-                android:maxLength="1000"
-                android:layout_margin="@dimen/define_dimen_10"
                 android:hint="@string/hint_optional"
-                android:textColorHint="@color/textColorAccent"
-                android:textColor="@color/textColorHeading"
+                android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
+                android:maxLength="1000"
                 android:padding="@dimen/define_dimen_12"
+                android:textColor="@color/textColorHeading"
+                android:textColorHint="@color/textColorAccent"
                 android:textSize="@dimen/text_size_small" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
@@ -446,51 +446,51 @@
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/define_dimen_10"
-        android:background="@color/bgFilter"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/define_dimen_10"
         android:layout_marginEnd="@dimen/define_dimen_10"
-        android:layout_marginBottom="@dimen/define_dimen_10">
+        android:layout_marginBottom="@dimen/define_dimen_10"
+        android:background="@color/bgFilter"
+        android:padding="@dimen/define_dimen_10">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/tv_add_order"
             android:layout_marginEnd="@dimen/define_dimen_10"
+            android:layout_toStartOf="@+id/tv_add_order"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_small"
+                android:text="@string/label_total"
                 android:textColor="@color/textColorHeading"
-                android:text="@string/label_total"/>
+                android:textSize="@dimen/text_size_small" />
 
             <TextView
                 android:id="@+id/tv_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xnormal"
-                android:textStyle="bold"
+                android:text="0.000vnd"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="0.000vnd"/>
+                android:textSize="@dimen/text_size_xnormal"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_add_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:paddingTop="@dimen/define_dimen_8"
-            android:paddingBottom="@dimen/define_dimen_8"
-            android:paddingStart="@dimen/define_dimen_14"
-            android:paddingEnd="@dimen/define_dimen_14"
+            android:layout_centerVertical="true"
             android:background="@drawable/bg_main_corner_6"
+            android:paddingStart="@dimen/define_dimen_14"
+            android:paddingTop="@dimen/define_dimen_8"
+            android:paddingEnd="@dimen/define_dimen_14"
+            android:paddingBottom="@dimen/define_dimen_8"
+            android:text="@string/label_add_order"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_size_normal"
-            android:text="@string/label_add_order"/>
+            android:textStyle="bold" />
     </RelativeLayout>
 </RelativeLayout>

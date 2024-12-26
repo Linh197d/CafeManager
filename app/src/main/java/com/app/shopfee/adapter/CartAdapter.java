@@ -21,12 +21,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     private final List<Drink> listDrink;
     private final IClickCartListener iClickCartListener;
 
-    public interface IClickCartListener {
-        void onClickDeleteItem(Drink drink, int position);
-        void onClickUpdateItem(Drink drink, int position);
-        void onClickEditItem(Drink drink);
-    }
-
     public CartAdapter(List<Drink> list, IClickCartListener listener) {
         this.listDrink = list;
         this.iClickCartListener = listener;
@@ -92,6 +86,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             return listDrink.size();
         }
         return 0;
+    }
+
+    public interface IClickCartListener {
+        void onClickDeleteItem(Drink drink, int position);
+
+        void onClickUpdateItem(Drink drink, int position);
+
+        void onClickEditItem(Drink drink);
     }
 
     public static class CartViewHolder extends RecyclerView.ViewHolder {

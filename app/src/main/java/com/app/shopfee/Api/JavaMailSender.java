@@ -1,10 +1,17 @@
 package com.app.shopfee.Api;
 
 import android.os.AsyncTask;
-import javax.mail.*;
+
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 
 public class JavaMailSender extends AsyncTask<Void, Void, Boolean> {
 
@@ -17,6 +24,7 @@ public class JavaMailSender extends AsyncTask<Void, Void, Boolean> {
         this.subject = subject;
         this.message = message;
     }
+
     @Override
     protected Boolean doInBackground(Void... voids) {
         final String username = "trillrooftop@gmail.com";
@@ -49,6 +57,7 @@ public class JavaMailSender extends AsyncTask<Void, Void, Boolean> {
             return false;
         }
     }
+
     @Override
     protected void onPostExecute(Boolean success) {
         super.onPostExecute(success);

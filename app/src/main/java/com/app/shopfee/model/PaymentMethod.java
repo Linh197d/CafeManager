@@ -7,7 +7,8 @@ public class PaymentMethod {
     private String description;
     private boolean isSelected;
 
-    public PaymentMethod() {}
+    public PaymentMethod() {
+    }
 
     public int getId() {
         return id;

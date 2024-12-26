@@ -99,6 +99,7 @@ public class RatingReviewActivity extends BaseActivity {
                     });
         }
     }
+
     private void sendRatingOrder(Rating rating) {
         if (ratingReview != null) {
             Map<String, Object> map = new HashMap<>();
@@ -133,6 +134,7 @@ public class RatingReviewActivity extends BaseActivity {
                                 }
                             }
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
@@ -152,6 +154,7 @@ public class RatingReviewActivity extends BaseActivity {
                                 }
                             }
                         }
+
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 

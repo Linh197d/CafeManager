@@ -87,13 +87,13 @@
 
         <TextView
             android:id="@+id/tv_otp_message"
-            android:visibility="gone"
-            android:textSize="11dp"
-            android:textColor="@color/red"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vui lòng chờ 30s để gửi lại OTP "></TextView>
+            android:gravity="center"
+            android:text="Vui lòng chờ 30s để gửi lại OTP "
+            android:textColor="@color/red"
+            android:textSize="11dp"
+            android:visibility="gone"></TextView>
 
         <TextView
             android:layout_width="match_parent"

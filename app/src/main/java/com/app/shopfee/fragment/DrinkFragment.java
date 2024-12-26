@@ -149,7 +149,8 @@ public class DrinkFragment extends Fragment {
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {}
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
                 });
     }
 
@@ -166,7 +167,7 @@ public class DrinkFragment extends Fragment {
         rcvDrink.setAdapter(drinkAdapter);
     }
 
-    private void setListDrinkDisplay(@NonNull Filter filter,@Nullable String keyword) {
+    private void setListDrinkDisplay(@NonNull Filter filter, @Nullable String keyword) {
         if (listDrink == null || listDrink.isEmpty()) return;
 
         if (listDrinkKeyWord != null) {
@@ -182,7 +183,7 @@ public class DrinkFragment extends Fragment {
         }
 
         if (!StringUtil.isEmpty(keyword)) {
-            for (Drink drink: listDrink) {
+            for (Drink drink : listDrink) {
                 if (getTextSearch(drink.getName()).toLowerCase().trim()
                         .contains(getTextSearch(keyword).toLowerCase().trim())) {
                     listDrinkKeyWord.add(drink);

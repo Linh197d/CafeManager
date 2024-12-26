@@ -16,11 +16,11 @@
         android:id="@+id/layout_cart_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_above="@+id/bottom_navigation"
         android:layout_margin="@dimen/define_dimen_10"
         android:background="@drawable/bg_button_enable_corner_16"
-        android:padding="@dimen/define_dimen_10">
+        android:padding="@dimen/define_dimen_10"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/img_cart"
@@ -51,9 +51,9 @@
                 android:id="@+id/tv_drinks_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_2"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:layout_marginTop="@dimen/define_dimen_2"
                 android:text="@string/app_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_xsmall" />

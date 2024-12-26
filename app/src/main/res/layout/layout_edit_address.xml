@@ -4,16 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    tools:viewBindingIgnore="true"
     android:orientation="vertical"
     android:padding="@dimen/define_dimen_10"
-    tools:ignore="Autofill,LabelFor" >
+    tools:ignore="Autofill,LabelFor"
+    tools:viewBindingIgnore="true">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_address"
         android:layout_gravity="center_horizontal"
+        android:text="@string/edit_address"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_xnormal"
         android:textStyle="bold" />
@@ -29,12 +29,12 @@
         android:id="@+id/edt_edit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:inputType="text"
         android:layout_marginTop="@dimen/define_dimen_5"
-        android:padding="@dimen/define_dimen_12"
         android:background="@drawable/bg_white_corner_16_border_gray"
         android:imeOptions="actionNext"
+        android:inputType="text"
+        android:padding="@dimen/define_dimen_12"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_small" />
 
     <TextView
@@ -48,12 +48,12 @@
         android:id="@+id/edt_edit_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:inputType="phone"
-        android:background="@drawable/bg_white_corner_16_border_gray"
         android:layout_marginTop="@dimen/define_dimen_5"
-        android:padding="@dimen/define_dimen_12"
+        android:background="@drawable/bg_white_corner_16_border_gray"
         android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:padding="@dimen/define_dimen_12"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_small" />
 
     <TextView
