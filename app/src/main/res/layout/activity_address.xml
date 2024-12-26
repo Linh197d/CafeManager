@@ -13,19 +13,19 @@
         android:id="@+id/rcv_address"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
         android:layout_above="@+id/btn_add_address"
-        android:focusable="false"/>
+        android:layout_below="@+id/toolbar"
+        android:focusable="false" />
 
     <Button
         android:id="@+id/btn_add_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/define_dimen_10"
-        android:textAllCaps="false"
         android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/define_dimen_10"
         android:background="@drawable/bg_button_enable_corner_16"
         android:text="@string/add_address"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_small" />
 </RelativeLayout>

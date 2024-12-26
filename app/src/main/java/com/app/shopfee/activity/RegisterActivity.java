@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import com.app.shopfee.Api.JavaMailSender;
 import com.app.shopfee.R;
-import com.app.shopfee.model.User;
-import com.app.shopfee.prefs.DataStoreManager;
 import com.app.shopfee.utils.GlobalFunction;
 import com.app.shopfee.utils.StringUtil;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends BaseActivity {
 
+    private static final long OTP_REQUEST_INTERVAL = 30000;
     private EditText edtEmail;
     private EditText edtPassword;
     private EditText edtOtp;
@@ -34,7 +33,7 @@ public class RegisterActivity extends BaseActivity {
     private TextView layOtp, tvOtpMessage;
     private boolean isEnableButtonRegister;
     private long otpRequestTime = 0;
-    private static final long OTP_REQUEST_INTERVAL = 30000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,10 +56,12 @@ public class RegisterActivity extends BaseActivity {
     private void initListener() {
         edtEmail.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -70,10 +71,12 @@ public class RegisterActivity extends BaseActivity {
 
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -105,7 +108,6 @@ public class RegisterActivity extends BaseActivity {
             }
         });
 
-
         btnRegister.setOnClickListener(v -> onClickValidateRegister());
     }
 
@@ -114,17 +116,9 @@ public class RegisterActivity extends BaseActivity {
         String strOtp = edtOtp.getText().toString().trim();
         String strPassword = edtPassword.getText().toString().trim();
 
-
-        boolean enableButton = !StringUtil.isEmpty(strEmail)  && !StringUtil.isEmpty(strOtp) && !StringUtil.isEmpty(strPassword);
+        boolean enableButton = !StringUtil.isEmpty(strEmail) && !StringUtil.isEmpty(strOtp) && !StringUtil.isEmpty(strPassword);
         isEnableButtonRegister = enableButton;
         btnRegister.setBackgroundResource(enableButton ? R.drawable.bg_button_enable_corner_16 : R.drawable.bg_button_disable_corner_16);
-    }
-
-    public static class OTPUtils {
-        public static String generateOTP() {
-            int randomPin = (int) (Math.random() * 900000) + 100000;
-            return String.valueOf(randomPin);
-        }
     }
 
     private void sendOtpToEmail(String email) {
@@ -156,8 +150,8 @@ public class RegisterActivity extends BaseActivity {
             showToastMessage(getString(R.string.msg_email_require));
         } else if (StringUtil.isEmpty(strPassword)) {
             showToastMessage(getString(R.string.msg_password_require));
-        } else if (strPassword.length() < 6) {
-            showToastMessage("Mật khẩu phải có ít nhất 6 ký tự");
+        } else if (!isStrongPassword(strPassword)) {
+            showToastMessage("Mật khẩu không đủ mạnh. Vui lòng sử dụng mật khẩu dài ít nhất 8 ký tự, bao gồm chữ in hoa, chữ thường, số và ký tự đặc biệt.");
         } else if (StringUtil.isEmpty(inputOtp)) {
             showToastMessage("Vui lòng nhập mã OTP");
         } else if (!StringUtil.isValidEmail(strEmail) || !strEmail.endsWith("@gmail.com")) {
@@ -165,6 +159,14 @@ public class RegisterActivity extends BaseActivity {
         } else {
             verifyOtpAndRegisterUser(strEmail, strPassword, inputOtp);
         }
+    }
+
+    private boolean isStrongPassword(String password) {
+        return password.length() >= 8
+                && password.matches(".*[A-Z].*")
+                && password.matches(".*[a-z].*")
+                && password.matches(".*\\d.*")
+                && password.matches(".*[@#$%^&+=!].*");
     }
 
     private void verifyOtpAndRegisterUser(String email, String password, String inputOtp) {
@@ -205,5 +207,12 @@ public class RegisterActivity extends BaseActivity {
                         showToastMessage(getString(R.string.msg_register_error));
                     }
                 });
+    }
+
+    public static class OTPUtils {
+        public static String generateOTP() {
+            int randomPin = (int) (Math.random() * 900000) + 100000;
+            return String.valueOf(randomPin);
+        }
     }
 }

@@ -16,4 +16,5 @@ public class Constant {
 
     public static final int TYPE_GOPAY = 1;
     public static final int TYPE_ZALO_PAY = 4;
+
 }

@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar"/>
+        layout="@layout/layout_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -70,10 +70,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/define_dimen_5"
                 android:background="@drawable/bg_white_corner_16_border_gray"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
                 android:enabled="false"
                 android:focusable="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
                 android:padding="@dimen/define_dimen_12"
                 android:textSize="@dimen/text_size_small"
                 tools:ignore="Autofill,LabelFor" />
@@ -93,8 +93,8 @@
                 android:background="@drawable/bg_white_corner_16_border_gray"
                 android:gravity="start"
                 android:imeOptions="actionDone"
-                android:maxLength="1000"
                 android:inputType="textMultiLine"
+                android:maxLength="1000"
                 android:padding="@dimen/define_dimen_12"
                 android:textSize="@dimen/text_size_small"
                 tools:ignore="Autofill,LabelFor" />

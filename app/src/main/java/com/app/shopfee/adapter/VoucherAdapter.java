@@ -20,14 +20,10 @@ import java.util.List;
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherViewHolder> {
 
-    private Context context;
     private final List<Voucher> listVoucher;
     private final int amount;
     private final IClickVoucherListener iClickVoucherListener;
-
-    public interface IClickVoucherListener {
-        void onClickVoucherItem(Voucher voucher);
-    }
+    private Context context;
 
     public VoucherAdapter(Context context, List<Voucher> list, int amount, IClickVoucherListener listener) {
         this.context = context;
@@ -92,6 +88,10 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherAdapter.VoucherV
 
     public void release() {
         if (context != null) context = null;
+    }
+
+    public interface IClickVoucherListener {
+        void onClickVoucherItem(Voucher voucher);
     }
 
     public static class VoucherViewHolder extends RecyclerView.ViewHolder {

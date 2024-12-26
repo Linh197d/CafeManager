@@ -43,6 +43,7 @@ public class AddressActivity extends BaseActivity {
     private List<Address> listAddress;
     private AddressAdapter addressAdapter;
     private long addressSelectedId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class AddressActivity extends BaseActivity {
             public void onClickDeleteAddressItem(Address address) {
                 deleteAddress(address);
             }
+
             @Override
             public void onClickEditAddressItem(Address address) {
                 editAddress(address);

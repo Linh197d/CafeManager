@@ -10,7 +10,8 @@ public class DrinkOrder implements Serializable {
     private int price;
     private String image;
 
-    public DrinkOrder() {}
+    public DrinkOrder() {
+    }
 
     public DrinkOrder(String name, String option, int count, int price, String image) {
         this.name = name;

@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar"/>
+        layout="@layout/layout_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,6 +43,6 @@
         android:id="@+id/rcvData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/define_dimen_14"
-        android:layout_marginStart="@dimen/define_dimen_14"/>
+        android:layout_marginStart="@dimen/define_dimen_14"
+        android:layout_marginBottom="@dimen/define_dimen_14" />
 </LinearLayout>

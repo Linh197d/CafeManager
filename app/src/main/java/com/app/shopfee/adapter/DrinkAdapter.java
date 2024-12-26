@@ -21,8 +21,8 @@ import java.util.List;
 
 public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.DrinkViewHolder> {
 
-    private List<Drink> listDrink;
     private final IClickDrinkListener iClickDrinkListener;
+    private List<Drink> listDrink;
 
     public DrinkAdapter(List<Drink> list, IClickDrinkListener listener) {
         this.listDrink = list;
@@ -74,6 +74,11 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.DrinkViewHol
         return 0;
     }
 
+    public void setFilterList(List<Drink> filterList) {
+        this.listDrink = filterList;
+        notifyDataSetChanged();
+    }
+
     public static class DrinkViewHolder extends RecyclerView.ViewHolder {
 
         private final ImageView imgDrink;
@@ -94,10 +99,5 @@ public class DrinkAdapter extends RecyclerView.Adapter<DrinkAdapter.DrinkViewHol
             tvRate = itemView.findViewById(R.id.tv_rate);
             layoutItem = itemView.findViewById(R.id.layout_item);
         }
-    }
-
-    public void setFilterList(List<Drink> filterList){
-        this.listDrink = filterList;
-        notifyDataSetChanged();
     }
 }

@@ -8,13 +8,13 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/layout_toolbar"/>
+        layout="@layout/layout_toolbar" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/layout_bottom">
+        android:layout_above="@+id/layout_bottom"
+        android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,36 +24,36 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/define_dimen_10">
+                android:layout_margin="@dimen/define_dimen_10"
+                android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_cart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:nestedScrollingEnabled="false"/>
+                    android:nestedScrollingEnabled="false" />
 
                 <LinearLayout
                     android:id="@+id/layout_add_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/define_dimen_10"
+                    android:gravity="center_vertical"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arow_left"/>
+                        android:src="@drawable/ic_arow_left" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textSize="@dimen/text_size_small"
                         android:layout_marginStart="@dimen/define_dimen_10"
-                        android:text="@string/label_add_order"/>
+                        android:text="@string/label_add_order"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="@dimen/text_size_small" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -62,13 +62,13 @@
                 android:layout_height="@dimen/define_dimen_6"
                 android:layout_marginTop="@dimen/define_dimen_6"
                 android:layout_marginBottom="@dimen/define_dimen_6"
-                android:background="@color/bgFilter"/>
+                android:background="@color/bgFilter" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/define_dimen_10">
+                android:layout_margin="@dimen/define_dimen_10"
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:id="@+id/layout_payment_method"
@@ -79,26 +79,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/img_next_payment_method"
                         android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/img_next_payment_method"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/label_payment_method"
                             android:textColor="@color/textColorHeading"
                             android:textSize="@dimen/text_size_small"
-                            android:textStyle="bold"
-                            android:text="@string/label_payment_method"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_payment_method"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textColorSecondary"
-                            android:textSize="@dimen/text_size_xsmall"
                             android:layout_marginTop="@dimen/define_dimen_5"
-                            android:text="@string/label_no_payment_method"/>
+                            android:text="@string/label_no_payment_method"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/text_size_xsmall" />
                     </LinearLayout>
 
                     <ImageView
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_next_right"/>
+                        android:src="@drawable/ic_next_right" />
                 </RelativeLayout>
 
                 <View
@@ -115,7 +115,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/define_dimen_10"
                     android:layout_marginBottom="@dimen/define_dimen_10"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent" />
 
                 <RelativeLayout
                     android:id="@+id/layout_address"
@@ -126,26 +126,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/img_next_address"
                         android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/img_next_address"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/address_title"
                             android:textColor="@color/textColorHeading"
                             android:textSize="@dimen/text_size_small"
-                            android:textStyle="bold"
-                            android:text="@string/address_title"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textColorSecondary"
-                            android:textSize="@dimen/text_size_xsmall"
                             android:layout_marginTop="@dimen/define_dimen_5"
-                            android:text="@string/label_no_address"/>
+                            android:text="@string/label_no_address"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/text_size_xsmall" />
                     </LinearLayout>
 
                     <ImageView
@@ -154,7 +154,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_next_right"/>
+                        android:src="@drawable/ic_next_right" />
                 </RelativeLayout>
 
                 <View
@@ -162,7 +162,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/define_dimen_10"
                     android:layout_marginBottom="@dimen/define_dimen_10"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent" />
 
                 <RelativeLayout
                     android:id="@+id/layout_voucher"
@@ -173,26 +173,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/img_next_voucher"
                         android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/img_next_voucher"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/title_voucher"
                             android:textColor="@color/textColorHeading"
                             android:textSize="@dimen/text_size_small"
-                            android:textStyle="bold"
-                            android:text="@string/title_voucher"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/tv_voucher"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textColorSecondary"
-                            android:textSize="@dimen/text_size_xsmall"
                             android:layout_marginTop="@dimen/define_dimen_5"
-                            android:text="@string/label_no_voucher"/>
+                            android:text="@string/label_no_voucher"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/text_size_xsmall" />
                     </LinearLayout>
 
                     <ImageView
@@ -201,7 +201,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_next_right"/>
+                        android:src="@drawable/ic_next_right" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -210,21 +210,21 @@
                 android:layout_height="@dimen/define_dimen_6"
                 android:layout_marginTop="@dimen/define_dimen_6"
                 android:layout_marginBottom="@dimen/define_dimen_6"
-                android:background="@color/bgFilter"/>
+                android:background="@color/bgFilter" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="@dimen/define_dimen_10">
+                android:layout_margin="@dimen/define_dimen_10"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/label_payment_summary"
                     android:textColor="@color/textColorHeading"
                     android:textSize="@dimen/text_size_small"
-                    android:textStyle="bold"
-                    android:text="@string/label_payment_summary"/>
+                    android:textStyle="bold" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -271,7 +271,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="@dimen/define_dimen_10"
                     android:layout_marginBottom="@dimen/define_dimen_10"
-                    android:background="@color/colorAccent"/>
+                    android:background="@color/colorAccent" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -280,25 +280,25 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toStartOf="@+id/tv_price_voucher"
                         android:layout_marginEnd="@dimen/define_dimen_10"
+                        android:layout_toStartOf="@+id/tv_price_voucher"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/title_voucher"
                             android:textColor="@color/textColorHeading"
-                            android:textSize="@dimen/text_size_small"
-                            android:text="@string/title_voucher"/>
+                            android:textSize="@dimen/text_size_small" />
 
                         <TextView
                             android:id="@+id/tv_name_voucher"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/textColorSecondary"
-                            android:textSize="@dimen/text_size_xsmall"
                             android:layout_marginTop="@dimen/define_dimen_5"
-                            android:text="@string/label_no_voucher"/>
+                            android:text="@string/label_no_voucher"
+                            android:textColor="@color/textColorSecondary"
+                            android:textSize="@dimen/text_size_xsmall" />
                     </LinearLayout>
 
                     <TextView
@@ -306,10 +306,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:textColor="@color/textColorSecondary"
-                        android:textSize="@dimen/text_size_small"
+                        android:src="@drawable/ic_item_unselect"
                         android:text="-0.000vnd"
-                        android:src="@drawable/ic_item_unselect"/>
+                        android:textColor="@color/textColorSecondary"
+                        android:textSize="@dimen/text_size_small" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -320,35 +320,35 @@
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/define_dimen_10"
-        android:background="@color/bgFilter"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="@dimen/define_dimen_10"
         android:layout_marginEnd="@dimen/define_dimen_10"
-        android:layout_marginBottom="@dimen/define_dimen_10">
+        android:layout_marginBottom="@dimen/define_dimen_10"
+        android:background="@color/bgFilter"
+        android:padding="@dimen/define_dimen_10">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/tv_checkout"
             android:layout_marginEnd="@dimen/define_dimen_10"
+            android:layout_toStartOf="@+id/tv_checkout"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_small"
+                android:text="@string/label_total"
                 android:textColor="@color/textColorHeading"
-                android:text="@string/label_total"/>
+                android:textSize="@dimen/text_size_small" />
 
             <TextView
                 android:id="@+id/tv_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_xnormal"
-                android:textStyle="bold"
+                android:text="0.000vnd"
                 android:textColor="@color/colorPrimaryDark"
-                android:text="0.000vnd" />
+                android:textSize="@dimen/text_size_xnormal"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView

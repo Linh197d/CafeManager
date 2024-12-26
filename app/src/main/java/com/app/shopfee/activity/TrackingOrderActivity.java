@@ -12,28 +12,18 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.app.shopfee.Api.CreateOrder;
 import com.app.shopfee.MyApplication;
 import com.app.shopfee.R;
 import com.app.shopfee.adapter.DrinkOrderAdapter;
 import com.app.shopfee.model.Order;
-import com.app.shopfee.model.RatingReview;
 import com.app.shopfee.utils.Constant;
 import com.app.shopfee.utils.GlobalFunction;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import vn.zalopay.sdk.ZaloPayError;
-import vn.zalopay.sdk.ZaloPaySDK;
-import vn.zalopay.sdk.interfaces.MerchantService;
-import vn.zalopay.sdk.listeners.PayOrderListener;
 
 public class TrackingOrderActivity extends BaseActivity {
 
@@ -108,6 +98,7 @@ public class TrackingOrderActivity extends BaseActivity {
 
         });
     }
+
     private void updateOrderStatusAfterRefund() {
         if (mOrder == null) return;
 

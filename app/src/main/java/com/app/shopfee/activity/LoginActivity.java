@@ -22,6 +22,7 @@ public class LoginActivity extends BaseActivity {
     private EditText edtPassword;
     private Button btnLogin;
     private LinearLayout layoutRegister;
+    //    private LinearLayout layoutFingerPrint;
     private TextView tvForgotPassword;
     private boolean isEnableButtonLogin;
 
@@ -39,16 +40,19 @@ public class LoginActivity extends BaseActivity {
         edtPassword = findViewById(R.id.edt_password);
         btnLogin = findViewById(R.id.btn_login);
         layoutRegister = findViewById(R.id.layout_register);
+//        layoutFingerPrint = findViewById(R.id.fingerprint);
         tvForgotPassword = findViewById(R.id.tv_forgot_password);
     }
 
     private void initListener() {
         edtEmail.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -71,10 +75,12 @@ public class LoginActivity extends BaseActivity {
 
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -101,6 +107,7 @@ public class LoginActivity extends BaseActivity {
         btnLogin.setOnClickListener(v -> onClickValidateLogin());
         tvForgotPassword.setOnClickListener(
                 v -> GlobalFunction.startActivity(this, ForgotPasswordActivity.class));
+//        layoutFingerPrint.setOnClickListener();
     }
 
     private void onClickValidateLogin() {

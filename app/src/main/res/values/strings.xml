@@ -152,5 +152,7 @@
     <string name="action_search">Search</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="msg_change_password_failed">Change password failed</string>
+    <string name="msg_weak_password">Weak password, Please use strong passwords with uppercase and lowercase letters, numbers and special characters</string>
 
 </resources>

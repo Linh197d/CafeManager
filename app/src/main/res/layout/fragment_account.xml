@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:ignore="ContentDescription, UseCompoundDrawables">
 
-    <include layout="@layout/layout_toolbar"/>
+    <include layout="@layout/layout_toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,34 +18,34 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_normal"
-            android:textStyle="bold"
+            android:text="@string/label_user_name"
             android:textColor="@color/colorPrimaryDark"
-            android:text="@string/label_user_name"/>
+            android:textSize="@dimen/text_size_normal"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/text_size_small"
             android:layout_marginTop="@dimen/define_dimen_5"
+            android:text="@string/label_user_name"
             android:textColor="@color/textColorHeading"
-            android:text="@string/label_user_name"/>
+            android:textSize="@dimen/text_size_small" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/bgFilter"
             android:layout_marginTop="@dimen/define_dimen_16"
-            android:layout_marginBottom="@dimen/define_dimen_16"/>
+            android:layout_marginBottom="@dimen/define_dimen_16"
+            android:background="@color/bgFilter" />
 
         <LinearLayout
             android:id="@+id/layout_feedback"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/define_dimen_10"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -55,8 +55,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/feedback"
                 android:layout_marginStart="@dimen/define_dimen_10"
+                android:text="@string/feedback"
                 android:textColor="@color/textColorHeading"
                 android:textSize="@dimen/text_size_small" />
         </LinearLayout>
@@ -66,8 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/define_dimen_30"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -77,8 +77,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/contact"
                 android:layout_marginStart="@dimen/define_dimen_10"
+                android:text="@string/contact"
                 android:textColor="@color/textColorHeading"
                 android:textSize="@dimen/text_size_small" />
         </LinearLayout>
@@ -88,8 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/define_dimen_30"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -99,8 +99,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/change_password"
                 android:layout_marginStart="@dimen/define_dimen_10"
+                android:text="@string/change_password"
                 android:textColor="@color/textColorHeading"
                 android:textSize="@dimen/text_size_small" />
         </LinearLayout>
@@ -109,9 +109,9 @@
             android:id="@+id/layout_sign_out"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="@dimen/define_dimen_30"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -121,8 +121,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_out"
                 android:layout_marginStart="@dimen/define_dimen_10"
+                android:text="@string/sign_out"
                 android:textColor="@color/textColorHeading"
                 android:textSize="@dimen/text_size_small" />
         </LinearLayout>

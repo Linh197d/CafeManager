@@ -20,10 +20,6 @@ public class ToppingAdapter extends RecyclerView.Adapter<ToppingAdapter.ToppingV
     private final List<Topping> listTopping;
     private final IClickToppingListener iClickToppingListener;
 
-    public interface IClickToppingListener {
-        void onClickToppingItem(Topping topping);
-    }
-
     public ToppingAdapter(List<Topping> list, IClickToppingListener listener) {
         this.listTopping = list;
         this.iClickToppingListener = listener;
@@ -57,6 +53,10 @@ public class ToppingAdapter extends RecyclerView.Adapter<ToppingAdapter.ToppingV
             return listTopping.size();
         }
         return 0;
+    }
+
+    public interface IClickToppingListener {
+        void onClickToppingItem(Topping topping);
     }
 
     public static class ToppingViewHolder extends RecyclerView.ViewHolder {

@@ -21,10 +21,6 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
     private final List<PaymentMethod> listPaymentMethod;
     private final IClickPaymentMethodListener iClickPaymentMethodListener;
 
-    public interface IClickPaymentMethodListener {
-        void onClickPaymentMethodItem(PaymentMethod paymentMethod);
-    }
-
     public PaymentMethodAdapter(List<PaymentMethod> list, IClickPaymentMethodListener listener) {
         this.listPaymentMethod = list;
         this.iClickPaymentMethodListener = listener;
@@ -69,6 +65,10 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
             return listPaymentMethod.size();
         }
         return 0;
+    }
+
+    public interface IClickPaymentMethodListener {
+        void onClickPaymentMethodItem(PaymentMethod paymentMethod);
     }
 
     public static class PaymentMethodViewHolder extends RecyclerView.ViewHolder {

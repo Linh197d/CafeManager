@@ -8,12 +8,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.biometric.BiometricPrompt;
+
 import com.app.shopfee.R;
 import com.app.shopfee.model.User;
 import com.app.shopfee.prefs.DataStoreManager;
 import com.app.shopfee.utils.StringUtil;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.concurrent.Executors;
 
 public class ChangePasswordActivity extends BaseActivity {
 
@@ -49,10 +54,12 @@ public class ChangePasswordActivity extends BaseActivity {
     private void initListener() {
         edtOldPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -65,10 +72,12 @@ public class ChangePasswordActivity extends BaseActivity {
         });
         edtNewPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -81,10 +90,12 @@ public class ChangePasswordActivity extends BaseActivity {
         });
         edtConfirmPassword.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -121,23 +132,73 @@ public class ChangePasswordActivity extends BaseActivity {
     }
 
     private void changePassword(String newPassword) {
-        showProgressDialog(true);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
+        if (!isPasswordStrong(newPassword)) {
+            showToastMessage(getString(R.string.msg_weak_password));
             return;
         }
-        user.updatePassword(newPassword)
-                .addOnCompleteListener(task -> {
-                    showProgressDialog(false);
-                    if (task.isSuccessful()) {
-                        showToastMessage(getString(R.string.msg_change_password_successfully));
-                        User userLogin = DataStoreManager.getUser();
-                        userLogin.setPassword(newPassword);
-                        DataStoreManager.setUser(userLogin);
-                        edtOldPassword.setText("");
-                        edtNewPassword.setText("");
-                        edtConfirmPassword.setText("");
+        authenticateBiometric(() -> {
+
+            showProgressDialog(true);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) {
+                return;
+            }
+
+            user.updatePassword(newPassword)
+                    .addOnCompleteListener(task -> {
+                        showProgressDialog(false);
+                        if (task.isSuccessful()) {
+                            showToastMessage(getString(R.string.msg_change_password_successfully));
+                            User userLogin = DataStoreManager.getUser();
+                            userLogin.setPassword(newPassword);
+                            DataStoreManager.setUser(userLogin);
+                            edtOldPassword.setText("");
+                            edtNewPassword.setText("");
+                            edtConfirmPassword.setText("");
+                        } else {
+                            showToastMessage(getString(R.string.msg_change_password_failed)
+                                    + ": " + task.getException().getMessage());
+                        }
+                    });
+        });
+    }
+
+    private void authenticateBiometric(Runnable onSuccess) {
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Xác thực để đổi mật khẩu")
+                .setSubtitle("Sử dụng vân tay hoặc khuôn mặt để xác thực danh tính của bạn")
+                .setNegativeButtonText("Hủy")
+                .build();
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, Executors.newSingleThreadExecutor(),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        onSuccess.run(); // Thực hiện logic đổi mật khẩu nếu xác thực thành công
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        showToastMessage("Xác thực thất bại: " + errString);
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        showToastMessage("Không thể xác thực danh tính của bạn.");
                     }
                 });
+
+        biometricPrompt.authenticate(promptInfo);
+    }
+
+    private boolean isPasswordStrong(String password) {
+        return password.length() >= 8 // độ dài lớn hơn =8
+                && password.matches(".*[A-Z].*")// có 1 ký tự in hoa
+                && password.matches(".*[a-z].*")// có 1 ký tự in thờng
+                && password.matches(".*\\d.*")// có 1 chữ số
+                && password.matches(".*[@#$%^&+=!].*");// có 1 ký tự dặc biệt
     }
 }

@@ -11,7 +11,8 @@ public class Filter {
     private String name;
     private boolean isSelected;
 
-    public Filter() {}
+    public Filter() {
+    }
 
     public Filter(int id, String name) {
         this.id = id;

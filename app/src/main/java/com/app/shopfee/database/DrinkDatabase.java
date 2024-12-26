@@ -18,7 +18,7 @@ public abstract class DrinkDatabase extends RoomDatabase {
     public static synchronized DrinkDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    DrinkDatabase.class, DATABASE_NAME)
+                            DrinkDatabase.class, DATABASE_NAME)
                     .allowMainThreadQueries()
                     .build();
         }

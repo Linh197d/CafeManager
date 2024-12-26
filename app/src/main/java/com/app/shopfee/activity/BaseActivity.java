@@ -1,5 +1,6 @@
 package com.app.shopfee.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -12,6 +13,18 @@ import com.app.shopfee.R;
 
 public abstract class BaseActivity extends AppCompatActivity {
     protected MaterialDialog progressDialog, alertDialog;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    protected void goToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -14,9 +14,7 @@ public class HexStringUtil {
     /**
      * Convert a byte array to a hexadecimal string
      *
-     * @param raw
-     *            A raw byte array
-     *
+     * @param raw A raw byte array
      * @return Hexadecimal string
      */
     public static String byteArrayToHexString(byte[] raw) {
@@ -34,9 +32,7 @@ public class HexStringUtil {
     /**
      * Convert a hexadecimal string to a byte array
      *
-     * @param hex
-     *            A hexadecimal string
-     *
+     * @param hex A hexadecimal string
      * @return The byte array
      */
     public static byte[] hexStringToByteArray(String hex) {

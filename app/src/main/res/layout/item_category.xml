@@ -26,8 +26,8 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Ảnh"
-            android:textStyle="bold"
-            android:textSize="12sp"></TextView>
+            android:textSize="12sp"
+            android:textStyle="bold"></TextView>
 
     </LinearLayout>
 
