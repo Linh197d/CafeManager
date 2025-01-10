@@ -8,6 +8,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import vn.zalopay.sdk.Environment;
+import vn.zalopay.sdk.ZaloPaySDK;
+
 public class MyApplication extends Application {
 
     private static final String FIREBASE_URL = "https://quanlycafe-6ea45-default-rtdb.firebaseio.com";
@@ -23,7 +26,10 @@ public class MyApplication extends Application {
         FirebaseApp.initializeApp(this);
         mFirebaseDatabase = FirebaseDatabase.getInstance(FIREBASE_URL);
         DataStoreManager.init(getApplicationContext());
+        ZaloPaySDK.init(2553, Environment.SANDBOX);
+
     }
+
 
     public DatabaseReference getVoucherDatabaseReference() {
         return mFirebaseDatabase.getReference("voucher");

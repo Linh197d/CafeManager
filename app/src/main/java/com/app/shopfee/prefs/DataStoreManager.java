@@ -78,7 +78,11 @@ public class DataStoreManager {
     public long getLastLoginTimestamp() {
         return sharedPreferences.getLong(PREF_LOGIN_TIMESTAMP, 0);
     }
-
+    public void setLastLoginTimestamp(long timestamp) {
+        sharedPreferences.edit()
+                .putLong(PREF_LOGIN_TIMESTAMP, timestamp) // Lưu timestamp vào SharedPreferences
+                .apply(); // Áp dụng thay đổi không đồng bộ
+    }
     public void clearUser() {
         sharedPreferences.edit()
                 .remove(PREF_USER_INFO)

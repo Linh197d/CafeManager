@@ -3,6 +3,7 @@ package com.app.shopfee.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.app.shopfee.R;
 import com.app.shopfee.prefs.DataStoreManager;
@@ -22,24 +23,27 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void checkLoginSession() {
-        DataStoreManager dataStoreManager = DataStoreManager.getInstance();
-        if (!dataStoreManager.isSessionValid()) {
-            dataStoreManager.clearUser();
-            goToLoginActivity();
-        }
+
     }
 
     private void goToActivity() {
-        checkLoginSession();
         DataStoreManager dataStoreManager = DataStoreManager.getInstance();
-        if (DataStoreManager.getUser() != null
-                && !StringUtil.isEmpty(DataStoreManager.getUser().getEmail())
-                && dataStoreManager.isSessionValid()) {
-            GlobalFunction.startActivity(this, MainActivity.class);
-        } else {
-            GlobalFunction.startActivity(this, LoginActivity.class);
+        Log.d("TAG", "goToActivity1: " + dataStoreManager.isSessionValid());
+        if (!dataStoreManager.isSessionValid()) {
+            dataStoreManager.clearUser();
+            goToLoginActivity();
+        }else {
+            Log.d("TAG", "goToActivity2: " + StringUtil.isEmpty(DataStoreManager.getUser().getEmail()));
+            Log.d("TAG", "goToActivity: " + DataStoreManager.getUser().getPassword().toString());
+            if (DataStoreManager.getUser() != null
+                    && !StringUtil.isEmpty(DataStoreManager.getUser().getEmail())
+                    && dataStoreManager.isSessionValid()) {
+                GlobalFunction.startActivity(this, MainActivity.class);
+            } else {
+                GlobalFunction.startActivity(this, LoginActivity.class);
+            }
+            finish();
         }
-        finish();
     }
 
     @Override

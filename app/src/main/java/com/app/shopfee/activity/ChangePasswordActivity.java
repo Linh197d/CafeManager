@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 
 import com.app.shopfee.R;
@@ -136,7 +137,7 @@ public class ChangePasswordActivity extends BaseActivity {
             showToastMessage(getString(R.string.msg_weak_password));
             return;
         }
-        authenticateBiometric(() -> {
+        authenticateBiometricOrDeviceCredentials(() -> {
 
             showProgressDialog(true);
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -163,6 +164,45 @@ public class ChangePasswordActivity extends BaseActivity {
         });
     }
 
+    private void authenticateBiometricOrDeviceCredentials(Runnable onSuccess) {
+        BiometricManager biometricManager = BiometricManager.from(this);
+
+        int canAuthenticate = biometricManager.canAuthenticate(
+                BiometricManager.Authenticators.BIOMETRIC_WEAK | BiometricManager.Authenticators.DEVICE_CREDENTIAL);
+
+        switch (canAuthenticate) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                // Sinh trắc học khả dụng
+                if (isBiometricEnrolled()) {
+                    authenticateBiometric(onSuccess);
+                } else {
+                    showToastMessage("Bạn chưa cài đặt vân tay hoặc khuôn mặt. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                    authenticateDeviceCredentials(onSuccess);
+                }
+                break;
+
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                // Sinh trắc học chưa được cài đặt
+                showToastMessage("Bạn chưa cài đặt vân tay hoặc khuôn mặt. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                authenticateDeviceCredentials(onSuccess);
+                break;
+
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+            default:
+                // Không có phần cứng hoặc lỗi khác, chuyển sang mã PIN/mật khẩu
+                showToastMessage("Thiết bị không hỗ trợ sinh trắc học. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                authenticateDeviceCredentials(onSuccess);
+                break;
+        }
+    }
+
+    private boolean isBiometricEnrolled() {
+        // Kiểm tra xem có phương thức sinh trắc học nào đã được cài đặt trên thiết bị
+        BiometricManager biometricManager = BiometricManager.from(this);
+        return biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) == BiometricManager.BIOMETRIC_SUCCESS;
+    }
+
     private void authenticateBiometric(Runnable onSuccess) {
         BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
                 .setTitle("Xác thực để đổi mật khẩu")
@@ -175,24 +215,56 @@ public class ChangePasswordActivity extends BaseActivity {
                     @Override
                     public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
-                        onSuccess.run(); // Thực hiện logic đổi mật khẩu nếu xác thực thành công
+                        runOnUiThread(onSuccess); // Xác thực thành công
                     }
 
                     @Override
                     public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        showToastMessage("Xác thực thất bại: " + errString);
+                        runOnUiThread(() -> showToastMessage("Xác thực thất bại: " + errString));
                     }
 
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
-                        showToastMessage("Không thể xác thực danh tính của bạn.");
+                        runOnUiThread(() -> showToastMessage("Không thể xác thực danh tính của bạn."));
                     }
                 });
 
         biometricPrompt.authenticate(promptInfo);
     }
+
+    private void authenticateDeviceCredentials(Runnable onSuccess) {
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Xác thực để đổi mật khẩu")
+                .setSubtitle("Sử dụng mã PIN, mật khẩu hoặc khóa hình mẫu để xác thực danh tính của bạn")
+                .setDeviceCredentialAllowed(true) // Cho phép sử dụng PIN/mật khẩu
+                .build();
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, Executors.newSingleThreadExecutor(),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        runOnUiThread(onSuccess); // Xác thực thành công
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        runOnUiThread(() -> showToastMessage("Xác thực thất bại: " + errString));
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        runOnUiThread(() -> showToastMessage("Không thể xác thực danh tính của bạn."));
+                    }
+                });
+
+        biometricPrompt.authenticate(promptInfo);
+    }
+
 
     private boolean isPasswordStrong(String password) {
         return password.length() >= 8 // độ dài lớn hơn =8

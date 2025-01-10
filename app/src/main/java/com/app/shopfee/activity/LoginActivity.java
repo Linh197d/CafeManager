@@ -142,6 +142,10 @@ public class LoginActivity extends BaseActivity {
                             GlobalFunction.startActivity(LoginActivity.this, MainActivity.class);
                             finishAffinity();
                         }
+                        DataStoreManager dataStoreManager = DataStoreManager.getInstance();
+
+                        dataStoreManager.setLastLoginTimestamp(System.currentTimeMillis());
+
                     } else {
                         showToastMessage(getString(R.string.msg_login_error));
                     }

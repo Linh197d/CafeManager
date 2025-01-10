@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
 import androidx.biometric.BiometricPrompt;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -331,13 +333,51 @@ public class CartActivity extends BaseActivity {
         }
 
         if (paymentMethodSelected.getId() == 4) {
-            authenticateBiometric(() -> {
-
+            authenticateBiometricOrDeviceCredentials(() -> {
                 handleZaloPayPayment();
             });
         } else {
             createAndSendOrder();
         }
+    }
+
+    private void authenticateBiometricOrDeviceCredentials(Runnable onSuccess) {
+        BiometricManager biometricManager = BiometricManager.from(this);
+
+        int canAuthenticate = biometricManager.canAuthenticate(
+                BiometricManager.Authenticators.BIOMETRIC_WEAK | BiometricManager.Authenticators.DEVICE_CREDENTIAL);
+
+        switch (canAuthenticate) {
+            case BiometricManager.BIOMETRIC_SUCCESS:
+                // Sinh trắc học khả dụng
+                if (isBiometricEnrolled()) {
+                    authenticateBiometric(onSuccess);
+                } else {
+                    showToastMessage("Bạn chưa cài đặt vân tay hoặc khuôn mặt. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                    authenticateDeviceCredentials(onSuccess);
+                }
+                break;
+
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                // Sinh trắc học chưa được cài đặt
+                showToastMessage("Bạn chưa cài đặt vân tay hoặc khuôn mặt. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                authenticateDeviceCredentials(onSuccess);
+                break;
+
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+            case BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE:
+            default:
+                // Không có phần cứng hoặc lỗi khác, chuyển sang mã PIN/mật khẩu
+                showToastMessage("Thiết bị không hỗ trợ sinh trắc học. Sử dụng mã PIN hoặc mật khẩu để xác thực.");
+                authenticateDeviceCredentials(onSuccess);
+                break;
+        }
+    }
+
+    private boolean isBiometricEnrolled() {
+        // Kiểm tra xem có phương thức sinh trắc học nào đã được cài đặt trên thiết bị
+        BiometricManager biometricManager = BiometricManager.from(this);
+        return biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_WEAK) == BiometricManager.BIOMETRIC_SUCCESS;
     }
 
     private void authenticateBiometric(Runnable onSuccess) {
@@ -352,24 +392,56 @@ public class CartActivity extends BaseActivity {
                     @Override
                     public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
                         super.onAuthenticationSucceeded(result);
-                        onSuccess.run(); // Thực hiện logic đổi mật khẩu nếu xác thực thành công
+                        runOnUiThread(onSuccess); // Xác thực thành công
                     }
 
                     @Override
                     public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
                         super.onAuthenticationError(errorCode, errString);
-                        showToastMessage("Xác thực thất bại: " + errString);
+                        runOnUiThread(() -> showToastMessage("Xác thực thất bại: " + errString));
                     }
 
                     @Override
                     public void onAuthenticationFailed() {
                         super.onAuthenticationFailed();
-                        showToastMessage("Không thể xác thực danh tính của bạn.");
+                        runOnUiThread(() -> showToastMessage("Không thể xác thực danh tính của bạn."));
                     }
                 });
 
         biometricPrompt.authenticate(promptInfo);
     }
+
+    private void authenticateDeviceCredentials(Runnable onSuccess) {
+        BiometricPrompt.PromptInfo promptInfo = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Xác thực để đổi mật khẩu")
+                .setSubtitle("Sử dụng mã PIN, mật khẩu hoặc khóa hình mẫu để xác thực danh tính của bạn")
+                .setDeviceCredentialAllowed(true) // Cho phép sử dụng PIN/mật khẩu
+                .build();
+
+        BiometricPrompt biometricPrompt = new BiometricPrompt(this, Executors.newSingleThreadExecutor(),
+                new BiometricPrompt.AuthenticationCallback() {
+                    @Override
+                    public void onAuthenticationSucceeded(BiometricPrompt.AuthenticationResult result) {
+                        super.onAuthenticationSucceeded(result);
+                        runOnUiThread(onSuccess); // Xác thực thành công
+                    }
+
+                    @Override
+                    public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                        super.onAuthenticationError(errorCode, errString);
+                        runOnUiThread(() -> showToastMessage("Xác thực thất bại: " + errString));
+                    }
+
+                    @Override
+                    public void onAuthenticationFailed() {
+                        super.onAuthenticationFailed();
+                        runOnUiThread(() -> showToastMessage("Không thể xác thực danh tính của bạn."));
+                    }
+                });
+
+        biometricPrompt.authenticate(promptInfo);
+    }
+
 
     private void handleZaloPayPayment() {
         CreateOrder orderApi = new CreateOrder();
@@ -382,6 +454,8 @@ public class CartActivity extends BaseActivity {
                 ZaloPaySDK.getInstance().payOrder(CartActivity.this, token, "demozpdk://app", new PayOrderListener() {
                     @Override
                     public void onPaymentSucceeded(String s, String s1, String s2) {
+                        Log.e("CartActivity", "Succeed");
+
                         runOnUiThread(() -> {
                             Toast.makeText(CartActivity.this, "Thanh toán thành công", Toast.LENGTH_SHORT).show();
                             createAndSendOrder();
@@ -390,6 +464,7 @@ public class CartActivity extends BaseActivity {
 
                     @Override
                     public void onPaymentCanceled(String s, String s1) {
+                        Log.e("CartActivity", "Cancel" );
                         runOnUiThread(() -> {
                             Toast.makeText(CartActivity.this, "Đã huỷ thanh toán", Toast.LENGTH_SHORT).show();
 
@@ -398,18 +473,24 @@ public class CartActivity extends BaseActivity {
 
                     @Override
                     public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
+                        Log.e("CartActivity", "ErrorPlayment" );
+
                         runOnUiThread(() -> {
                             Toast.makeText(CartActivity.this, "Lỗi thanh toán", Toast.LENGTH_SHORT).show();
                         });
                     }
                 });
+            }else {
+                Log.e("CartActivity", "no 1" );
+
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            Handler handler = new Handler(Looper.getMainLooper());
-            handler.post(() -> {
+            e.printStackTrace();  // In stack trace ra console (logcat)
+                // Log thông tin lỗi chi tiết vào Logcat
+                Log.e("CartActivity", "Error: " + Log.getStackTraceString(e));
+                // Hiển thị thông báo Toast cho người dùng
                 Toast.makeText(this, "Lỗi tạo đơn hàng ZaloPay", Toast.LENGTH_SHORT).show();
-            });
+
         }
     }
 
